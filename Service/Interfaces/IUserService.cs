@@ -12,5 +12,7 @@ namespace Service.Interfaces
     {
         Task<UserResponseDto> RegisterUserAsync(UserRegisterDto userDto);
         Task<UserResponseDto?> LoginAsync(string email, string password);
+
+        Task<UserResponseDto?> GetUserByEmailAsync(string email);
     }
 }

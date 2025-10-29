@@ -24,8 +24,19 @@ builder.Services.AddScoped<IVendorRepository, VendorRepository>();
 builder.Services.AddScoped<IDeliveryBoyRepository, DeliveryBoyRepository>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:5174")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
+
+app.UseCors("AllowReactApp");
 
 
 if (app.Environment.IsDevelopment())

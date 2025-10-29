@@ -79,7 +79,7 @@ namespace ECommerce.Account.Controllers
 
             var responseDto = new UserResponseDto
             {
-                UniqueKey = user.UserGuid,
+                UniqueKey = user.UniqueKey,
                 FullName = user.FullName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber

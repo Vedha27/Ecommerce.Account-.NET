@@ -109,9 +109,19 @@ namespace Service.Implementations
             };
         }
 
-        public async Task<User?> GetUserByEmailAsync(string email)
+        public async Task<UserResponseDto> GetUserByEmailAsync(string email)
         {
-            return await _userRepository.GetUserByEmailAsync(email);
+            var user = await _userRepository.GetUserByEmailAsync(email);
+
+            if (user == null) return null;
+
+            return new UserResponseDto
+            {
+                UniqueKey = user.UserGuid,
+                FullName = user.FullName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber
+            };
         }
     }
 }
